@@ -118,7 +118,7 @@ The target synchronization error should no longer be generated.
 
 ### 3. Verify Alert Recovery
 
-Check the alert state :  Observe -> Alert 
+Check the alert state by logging to OpenShift Console :  Observe -> Alerting 
 
 The alert should eventually resolve once the target synchronization failure is no longer within the alert's evaluation window.
 
