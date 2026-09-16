@@ -77,8 +77,6 @@ Inspect and correct the corresponding ServiceMonitor, PodMonitor, Probe, or othe
 oc get servicemonitor|podmonitor|probe -n <namespace>
 ```
 
-```
-
 If the log identifies a specific resource, inspect it directly.
 
 ```bash
