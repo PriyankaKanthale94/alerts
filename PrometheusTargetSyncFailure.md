@@ -1,6 +1,6 @@
 # PrometheusTargetSyncFailure
 
-**PrometheusRule Source:** cluster-monitoring-operator · **Pending For:** 5m · **Severity:** Critical · **Runbook:** https://github.com/openshift/runbooks/blob/master/alerts/cluster-monitoring-operator/PrometheusTargetSyncFailure.md 
+**PrometheusRule Source:** cluster-monitoring-operator · **Pending For:** 5m · **Severity:** Critical · [**Runbook:**] (https://github.com/openshift/runbooks/blob/master/alerts/cluster-monitoring-operator/PrometheusTargetSyncFailure.md) 
 
 ## Meaning
 
@@ -19,11 +19,6 @@ Examples include:
 
 The alert remains **Pending for 5 minutes** before transitioning to **Firing**.
 
-**Description** 
-
-` {{ printf "%.0f" $value }} targets in Prometheus {{$labels.namespace}}/{{$labels.pod}} have failed to sync because invalid configuration was supplied. `
-
-
 ## Impact
 
 * Metrics from affected targets will not be collected.
@@ -33,6 +28,12 @@ The alert remains **Pending for 5 minutes** before transitioning to **Firing**.
 
 ## Diagnosis
 
+### Variables (from alert)
+```bash
+
+NAMESPACE = labels.namespace
+POD = labels.pod
+```
 ### 1. Inspect Prometheus Logs
 
 Check the logs of the Prometheus pods in the `openshift-monitoring` namespace.
@@ -98,7 +99,7 @@ The mitigation depends on the error identified in the Prometheus logs.
 | **Invalid relabel configuration**            | Logs indicate an invalid regex, relabeling action, or target relabeling configuration                   | Correct the `relabelings` configuration in the affected monitoring resource.                                 |
 | **Incorrect Service/Endpoint configuration** | The ServiceMonitor is selected but the associated target configuration is invalid                       | Verify the Service, Endpoints/EndpointSlice, port, selector, and ServiceMonitor configuration.               |
 | **Invalid monitoring resource**              | The Prometheus logs identify a specific ServiceMonitor, PodMonitor, or Probe with a configuration error | Correct the identified resource according to the error reported in the logs.                                 |
-
+| **Unknown**                   | | Collect inspect file : oc adm inspect ns/openshift-monitoring 
 
 ## Verification
 
@@ -114,7 +115,7 @@ oc -n openshift-monitoring logs -l 'app.kubernetes.io/name=prometheus' -c promet
 The target synchronization error should no longer be generated.
 
 
-### 3. Verify Alert Recovery
+### 2. Verify Alert Recovery
 
 Check the alert state by logging to OpenShift Console :  Observe -> Alerting 
 
