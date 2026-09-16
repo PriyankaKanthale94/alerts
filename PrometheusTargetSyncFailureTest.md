@@ -103,7 +103,7 @@ time=2026-09-15T11:34:27.915Z level=ERROR source=scrape.go:478 msg="Creating tar
 
 ```
 
-## 6. Verify the Alert
+## 5. Verify the Alert
 
 check by login to OpenShift console by navigating  Observe -> Alerting -> Pending|Firing
 
@@ -119,7 +119,7 @@ namespace=openshift-monitoring
 
 ---
 
-## 7. Clean Up the Test Resources
+## 6. Clean Up the Test Resources
 
 After completing the test, remove all resources created by this procedure:
 
