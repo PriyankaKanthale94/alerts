@@ -141,7 +141,7 @@ oc exec -n openshift-monitoring alertmanager-main-0 -c alertmanager -- amtool al
 7. Clean up the test:
 
 After validating the alert, delete the test namespace. 
-Bash
+
 
 ```bash
 oc delete namespace thanos-alert-test
