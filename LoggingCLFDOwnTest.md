@@ -86,11 +86,7 @@ The value for up{job="clf-otlp"} should be 0.
 
 Navigate to:
 
-**Observe → Alerting → Alerts**
-
-1. Search for `LoggingCLFDown`.
-2. Confirm that the alert enters the **Pending** state.
-3. After `5m`, confirm that the alert transitions to **Firing**.
+**Observe → Alerting → Alerts**  `LoggingCLFDown`
 
 After Prometheus observes the failed scrape, the alert should enter `Pending` and transition to `Firing` after the configured `5m` pending period.
 
@@ -115,12 +111,8 @@ curl -sg http://localhost:9090/api/v1/query \
 | jq -r '.data.result[] | [.metric.__name__, .value[1]] | @tsv'
 ```
 
-The expected value is:
+## 3 Check the alert: 
 
-```text
-up{job="clf-otlp"} 1
-```
-
-Check the OpenShift Alerting UI or run the `ALERTS` query again to confirm that the `LoggingCLFDown` alert has automatically resolved.
+Check the OpenShift console to confirm that the `LoggingCLFDown` alert has automatically resolved.
 
 The alert should transition from **Firing** to **Inactive** once Prometheus successfully scrapes the `clf-otlp` target and the alert expression is no longer true.
