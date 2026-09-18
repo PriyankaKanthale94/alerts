@@ -26,7 +26,6 @@ up{job="clf-otlp"} == 0
 When the `clf-otlp` forwarder is unreachable:
 
 * Log forwarding to external destinations, specifically the OTLP and Splunk HEC outputs configured on the `clf-otlp` forwarder, may experience problems.
-* Cluster and application observability is severely degraded because the pipeline is down.
 
 ## Diagnosis
 
