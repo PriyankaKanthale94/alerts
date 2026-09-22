@@ -173,6 +173,7 @@ oc get networkpolicy -n openshift-monitoring
 * Check the Alertmanager readiness probe.
 * Review the pod events for readiness or liveness probe failures.
 * Verify that Prometheus can reach the Alertmanager metrics endpoint.
+```
 
 Inspect the pod:
 
