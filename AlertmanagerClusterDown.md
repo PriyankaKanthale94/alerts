@@ -53,11 +53,26 @@ Scrape duration
 Error message
 ```
 
-### 2. Check the Status of Alertmanager Pods
+### 2. Check the Status of Alertmanager Service , Endpoints and Pods. 
 
-Use the OpenShift CLI to inspect the state of the Alertmanager pods in the `openshift-monitoring` or `openshift-user-workload-monitoring` namespace.
+```bash
+oc get svc alertmanager-main -n openshift-monitoring
+```
 
-#### Main Alertmanager cluster
+```bash
+oc get endpoints alertmanager-main -n openshift-monitoring
+```
+
+Also check EndpointSlices:
+
+```bash
+oc get endpointslice -n openshift-monitoring \
+  -l kubernetes.io/service-name=alertmanager-main
+```
+
+Verify that the expected Alertmanager endpoints are present.
+
+Check Alertmanager pods in the `openshift-monitoring` or `openshift-user-workload-monitoring` namespace.
 
 ```bash
 oc get pods -n openshift-monitoring -l app.kubernetes.io/name=alertmanager
@@ -68,8 +83,6 @@ oc get pods -n openshift-monitoring -l app.kubernetes.io/name=alertmanager
 ```bash
 oc get pods -n openshift-user-workload-monitoring -l app.kubernetes.io/name=alertmanager
 ```
-
-Review the `STATUS`, `RESTARTS`, and `READY` columns.
 
 ### 3. Inspect Pod Logs and Events
 
