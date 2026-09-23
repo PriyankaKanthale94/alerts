@@ -7,7 +7,7 @@ The test uses a `NetworkPolicy` applied to the `openshift-monitoring` namespace.
 By blocking ingress traffic specifically to the `alertmanager-main-0` pod, Prometheus 
 is unable to scrape it. This causes the `up` metric for that specific pod to evaluate to `0`. 
 
-This reproducer also generates PrometheusErrorSendingAlertsToSomeAlertmanagers Alerts as more than 1% of alerts sent by Prometheus to a specific Alertmanager are affected with error.
+This reproducer also generates `**PrometheusErrorSendingAlertsToSomeAlertmanagers**` alerts as more than 1% of alerts sent by Prometheus to a specific Alertmanager are affected with error.
 
 # Procedure:
 
