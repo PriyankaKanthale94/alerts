@@ -27,7 +27,7 @@ example :
 
 ### 1. Backup the Current Configuration
 
-Create a backup of your existing Alertmanager configuration in case you need to revert manually:
+Create a backup of your existing Alertmanager configuration.
 
 ```bash
 oc -n openshift-monitoring get secret alertmanager-main \
@@ -71,12 +71,10 @@ Wait 1–2 minutes and check for `AlertmanagerReceiversNotConfigured`
 
 ### 5. Restore the Valid Configuration
 
-Remove the ``#`` from alertmanager-backup.yaml 
+Remove the ``#`` from alertmanager-backup.yaml file. 
 
 
 ### 6. Apply the Cleanup Configuration
-
-Apply the valid configuration to resolve the alert:
 
 ```bash
 oc create secret generic alertmanager-main \
@@ -85,7 +83,7 @@ oc create secret generic alertmanager-main \
   --dry-run=client -o yaml | oc replace -f -
 ```
 
-### 7. Verify the Fix
+### 7. Verify
 
 Verify that the Alertmanager configuration has been reloaded successfully by checking the Alertmanager logs:
 
