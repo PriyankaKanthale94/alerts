@@ -57,6 +57,14 @@ oc -n openshift-monitoring create secret generic alertmanager-main \
 
 Navigate the OpenShift WebConsole Observe -> Alerting -> Check for AlertmanagerClusterFailedToSendAlerts
 
+Check logs from the failing alertmanager pod. 
+
+```bash
+# oc logs alertmanager-main-0 -n openshift-monitoring 
+time=2026-09-30T04:58:38.540Z level=WARN source=notify.go:868 msg="Notify attempt failed, will retry later" component=dispatcher receiver=failing-receiver integration=webhook[0] aggrGroup="{}/{alertname=\"Watchdog\"}:{namespace=\"openshift-monitoring\"}" attempts=1 err="Post \"<redacted>\": dial tcp 203.0.113.1:9999: connect: connection timed out"
+time=2026-09-30T05:01:26.931Z level=ERROR source=dispatch.go:363 msg="Notify for alerts failed" component=dispatcher num_alerts=1 err="failing-receiver/webhook[0]: notify retry canceled after 3 attempts: Post \"<redacted>\": dial tcp 203.0.113.1:9999: connect: connection timed out"
+```
+
 ## Cleanup
 
 ### Restore the Original Configuration from the backup
